@@ -1,0 +1,43 @@
+Write a function:
+
+function solution($A);
+
+that, given an array A of N integers, returns the smallest positive integer (greater than 0) that does not occur in A.
+
+For example, given A = [1, 3, 6, 4, 1, 2], the function should return 5.
+
+Given A = [1, 2, 3], the function should return 4.
+
+Given A = [−1, −3], the function should return 1.
+
+Write an efficient algorithm for the following assumptions:
+
+N is an integer within the range [1..100,000];
+each element of array A is an integer within the range [−1,000,000..1,000,000].
+Copyright 2009–2021 by Codility Limited. All Rights Reserved. Unauthorized copying, publication or disclosure prohibited.
+
+Solution:
+
+function solution($A) {
+
+    $B = [];
+    foreach($A as $a){ 
+        if($a > 0) $B[] = $a;   
+    }
+
+    $i = 1;
+    $last = 0;
+    sort($B);
+
+    foreach($B as $b){
+
+        if($last == $b) $i--; // Check for repeated elements
+        else if($i != $b) return $i;
+
+        $i++;
+        $last = $b;        
+
+    }
+
+    return $i;
+}
